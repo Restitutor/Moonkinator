@@ -1,5 +1,6 @@
 import asyncio
 from asyncio.subprocess import PIPE
+import os
 from typing import Generator
 
 
@@ -17,10 +18,11 @@ async def read_lines(stream: asyncio.StreamReader) -> str:
     return lines
 
 
-async def interact_with_process() -> Generator[str, str, None]:
+async def interact_with_process(path: str) -> Generator[str, str, None]:
     # Start the subprocess
+    assert os.path.isfile(path)
     process = await asyncio.create_subprocess_exec(
-        "python", "./game.py", stdin=PIPE, stdout=PIPE
+        "python", path, stdin=PIPE, stdout=PIPE
     )
 
     stdout = await read_lines(process.stdout)
@@ -32,9 +34,9 @@ async def interact_with_process() -> Generator[str, str, None]:
         while True:
             if process.returncode is not None or user_input == "STOP":
                 break
-    
+
             # Write the user's input to the subprocess stdin
-            process.stdin.write((user_input + "\n").encode())   
+            process.stdin.write((user_input + "\n").encode())
             await process.stdin.drain()
 
             # Read the output from subprocess stdout and yield it
@@ -42,10 +44,10 @@ async def interact_with_process() -> Generator[str, str, None]:
     finally:
         if process.returncode is None:
             process.kill()
-        
+
 
 async def run_game():
-    gen = interact_with_process()
+    gen = interact_with_process("./game.py")
     print(await gen.asend(None), end="")  # Start the generator
 
     while True:
