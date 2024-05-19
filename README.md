@@ -10,6 +10,9 @@ game.py is the command line game.
 
 wrapper.py is a library for converting game.py into a generator which moonbot.py uses.
 
+### License
+AGPL3 applies to all code except game.py. You can keep that private for your own custom games. :)
+
 ### Special thanks to
 
 MoonGuyyy for the initial version.
