@@ -35,22 +35,24 @@ def main() -> None:
                 if ask_yes("Does your character make YouTube videos?"):
                     if ask_yes("Did your character show their face yet?"):
                         ask_character("Walnutty")
-                    elif ask_yes("Is your character Swedish?"):
-                        ask_character("Eitifrie")
-                    else:
+                    elif ask_yes("Does your character live in the Netherlands?"):
                         ask_character("MoonGuyyy")
+                    else:
+                        ask_character("EitiFrie")
+                elif ask_yes("Is your character Swedish?"):
+                    ask_character("guahlg")
                 else:
                     ask_character("XPierceFire")
-            elif ask_yes("Is your character American?"):
-                if ask_yes("Is there an animal in your character's name?"):
-                    ask_character("ZebraColl")
-                else:
-                    ask_character("Jakerbricks")
+            elif ask_yes("Is there an animal in your character's name?"):
+                ask_character("ZebraColl")
+            elif ask_yes("Does your character have over 1000 subscribers on YouTube?"):
+                ask_character("Arbythor")
+            else:
+                ask_character("Jakerbricks")
         elif ask_yes("Is your character part of the Eternals SMP?"):
             if ask_yes("Did your character show their face yet?"):
                 if ask_yes("Does your character live in Europe?"):
-                    if ask_yes("Is your character cactus-themed?"):
-                        ask_character("Yukii")
+                    ask_character("Yukii")
                 elif ask_yes("Does your character live in Australia?"):
                     ask_character("StumpsMC")
                 elif ask_yes("Does your character have over 1000 subscribers?"):
@@ -60,10 +62,8 @@ def main() -> None:
                         "Does your character have a lot of red in their profile picture?"
                     ):
                         ask_character("OddManMC")
-                        if ask_yes(
-                            "Is your character the richest member of the Eternals SMP in terms of Diamonds?"
-                        ):
-                            ask_character("Gager")
+                    else:
+                        ask_character("Gager")
                 elif ask_yes("Does your character skate?"):
                     ask_character("UnderscoreBails")
                 elif ask_yes("Is your character a crazy scientist?"):
@@ -91,7 +91,10 @@ def main() -> None:
         elif ask_yes("Has your character revealed their voice yet?"):
             ask_character("LyricWheat")
         elif ask_yes("Does your character live in Europe?"):
-            ask_character("Tentoring")
+            if ask_yes("Does your character love tents?"):
+                ask_character("Tentoring")
+            else:
+                ask_character("ChessGuyyy")
         elif ask_yes("Does your character make YouTube videos?"):
             ask_character("FireFox")
         else:
