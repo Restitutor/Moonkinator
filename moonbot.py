@@ -52,7 +52,6 @@ async def on_message(message):
     try:
         output, all_state[user] = await play(all_state[user], text)
     except StopAsyncIteration:
-        await message.reply("Thanks for playing!")
         del all_state[user]
     except Exception as e:
         logging.exception(e)  # Invalid response. Skip.
