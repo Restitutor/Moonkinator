@@ -1,3 +1,4 @@
+#!/home/onfim/no_sync/TTS/venv/bin/python
 #!/usr/bin/env python3
 from collections import defaultdict
 import discord
@@ -17,7 +18,7 @@ all_state = defaultdict(str)
 
 async def play(state: AsyncGenerator, text: str) -> tuple[str, AsyncGenerator]:
     if text == "start":
-        new_state = interact_with_process()
+        new_state = interact_with_process("./game.py")
         output = await new_state.asend(None)
     else:
         output = await state.asend(text)
@@ -35,6 +36,13 @@ async def on_message(message):
     # Remove non letters
     text = re.sub(r"[^a-z]+", "", message.clean_content.lower())
     user = message.author.id
+
+    if "listakinator" in text:
+        with open('listPlayers.txt') as f:
+            players = f.read().replace('\n', ', ')
+        await message.reply(players)
+        return
+
     if text not in {"yes", "no", "start"}:
         return
 
@@ -58,6 +66,3 @@ async def on_message(message):
 @bot.event
 async def on_ready():
     print("Started")
-
-
-bot.run("TOKEN")
