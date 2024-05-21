@@ -31,9 +31,10 @@ async def run_git_pull() -> str:
         stderr=asyncio.subprocess.PIPE,
         cwd="repository",
     )
-    shutil.copy("repository/game.py", "game.py")
 
     stdout, stderr = await process.communicate()
+    shutil.copy("repository/game.py", "game.py")
+    await asyncio.create_subprocess_shell("./listPlayers.sh > ./listPlayers.txt")
 
     if stderr:
         logging.error(stderr)
