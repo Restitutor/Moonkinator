@@ -44,7 +44,7 @@ def main() -> None:
                 else:
                     ask_character("XPierceFire")
             elif ask_yes("Is there an animal in your character's name?"):
-                ask_character("ZebraColl")
+                ask_character("Zebra-Coll")
             elif ask_yes("Does your character have over 1000 subscribers on YouTube?"):
                 ask_character("Arbythor")
             else:
